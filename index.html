@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>No shortage & 0 Accident</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .app-container {
+            position: relative;
+            height: 100vh;
+            background-color: black;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 140px;
+        }
+
+        h1 {
+            font-size: 3.6rem;
+            margin-bottom: 30px;
+            margin-top: 550px;
+            text-align: center;
+        }
+        h2 {
+            font-size: 3.6rem;
+            margin-bottom: 30px;
+            margin-top: 55px;
+            text-align: center;
+            color: red;
+        }
+        h3 {
+            font-size: 1rem;
+            margin-bottom: 30px;
+            margin-top: 220px;
+            text-align: center;
+            color: black;
+        }
+        h4 {
+            font-size: 1rem;
+            margin-bottom: 30px;
+            margin-top: 20px;
+            text-align: center;
+            color: black;
+        }
+
+        .countup-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .countdown-container {
+            display: flex;
+            gap: 40px; /* Increased gap for Zero Accident Warehouse */
+        }
+
+        .time-box1, .time-box2 {
+            background-color: red;
+            color: white;
+            padding: 40px;
+            border-radius: 10px;
+            min-width: 200px;
+            text-align: center;
+            font-size: 2.2rem;
+        }
+        
+        .time-box2 {
+            background-color: white;
+            color: black;
+        }
+
+        /* New Input Form Styles */
+        .input-container {
+            margin-top: 40px;  /* Added margin top for spacing */
+            text-align: center;
+        }
+
+        .input-box {
+            font-size: 1.1rem;
+            padding: 5px 9px;
+            margin: 5px;
+            width: 90px;
+            text-align: center;
+        }
+
+        .set-button {
+            background-color: red;
+            color: white;
+            padding: 10px 20px;
+            margin-top: 9px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <img src="https://th.bing.com/th/id/R.5848369b94793a4a77ac3b55b5c2ca9e?rik=18w7E62SCz4fCA&riu=http%3a%2f%2fwww.carlogos.org%2flogo%2fToyota-text-logo-3000x550.png&ehk=nBHkyymrFWlpZH4Ac%2b%2bn6RZHD%2fgYKf5MzBMq5k7nNn0%3d&risl=&pid=ImgRaw&r=0" alt="Logo" class="logo" />
+        <h1 class="title">DAY NO SHORTAGE MATERIAL</h1>
+
+        <!-- Countdown boxes for No Shortage Material -->
+        <div class="countup-container">
+            <div class="time-box1">
+                <span id="days1">0 Days</span>
+            </div>
+            <div class="time-box1">
+                <span id="hours1">0 Hours</span>
+            </div>
+            <div class="time-box1">
+                <span id="minutes1">0 Minutes</span>
+            </div>
+            <div class="time-box1">
+                <span id="seconds1">0 Seconds</span>
+            </div>
+        </div>
+
+        <h2 class="title">DAY ZERO ACCIDENT WAREHOUSE 2024</h2>
+        
+        <!-- Countdown boxes for Zero Accident Warehouse -->
+        <div class="countdown-container">
+            <div class="time-box2">
+                <span id="days2">0 Days</span>
+            </div>
+            <div class="time-box2">
+                <span id="hours2">0 Hours</span>
+            </div>
+            <div class="time-box2">
+                <span id="minutes2">0 Minutes</span>
+            </div>
+            <div class="time-box2">
+                <span id="seconds2">0 Seconds</span>
+            </div>
+        </div>
+
+        <!-- Time input form to change start time for Zero Accident Warehouse -->
+        <div class="input-container">
+            <h3>Set Start Time for Zero Accident Warehouse</h3>
+            <div>
+                <input class="input-box" type="number" id="daysInput2" placeholder="Days" />
+                <input class="input-box" type="number" id="hoursInput2" placeholder="Hours" />
+                <input class="input-box" type="number" id="minutesInput2" placeholder="Minutes" />
+                <input class="input-box" type="number" id="secondsInput2" placeholder="Seconds" />
+            </div>
+            <button class="set-button" onclick="setStartTime2()">Set Start Time</button>
+        </div>
+
+        <!-- Time input form to change start time for No Shortage Material -->
+        <div class="input-container">
+            <h4>Set Start Time for No Shortage Material</h4>
+            <div>
+                <input class="input-box" type="number" id="daysInput1" placeholder="Days" />
+                <input class="input-box" type="number" id="hoursInput1" placeholder="Hours" />
+                <input class="input-box" type="number" id="minutesInput1" placeholder="Minutes" />
+                <input class="input-box" type="number" id="secondsInput1" placeholder="Seconds" />
+            </div>
+            <button class="set-button" onclick="setStartTime1()">Set Start Time</button>
+        </div>
+    </div>
+
+    <script>
+        // Initial time in seconds for both countdowns
+        const defaultStartTime1 = 20 * 24 * 60 * 60 + 7 * 60 * 60 + 1 * 60; // 20 days, 7 hours, 1 minute for No Shortage Material
+        const defaultStartTime2 = 312 * 24 * 60 * 60 + 7 * 60 * 60 + 1 * 60; // 312 days, 7 hours, 1 minute for Zero Accident
+
+        // Retrieve the elapsed times from localStorage or use the default starting times
+        let elapsedTime1 = parseInt(localStorage.getItem('elapsedTime1')) || defaultStartTime1;
+        let elapsedTime2 = parseInt(localStorage.getItem('elapsedTime2')) || defaultStartTime2;
+
+        // Ensure elapsed times are valid numbers
+        if (isNaN(elapsedTime1) || elapsedTime1 < 0) elapsedTime1 = defaultStartTime1;
+        if (isNaN(elapsedTime2) || elapsedTime2 < 0) elapsedTime2 = defaultStartTime2;
+
+        // Function to update countdown for No Shortage Material (time-box1)
+        function updateCountdown1() {
+            // Increase the elapsed time by one second
+            elapsedTime1++;
+
+            // Calculate the time values for time-box1
+            let days1 = Math.floor(elapsedTime1 / (24 * 60 * 60));
+            let hours1 = Math.floor((elapsedTime1 % (24 * 60 * 60)) / (60 * 60));
+            let minutes1 = Math.floor((elapsedTime1 % (60 * 60)) / 60);
+            let seconds1 = elapsedTime1 % 60;
+
+            // Update the HTML content for time-box1
+            document.getElementById("days1").textContent = `${days1} Days`;
+            document.getElementById("hours1").textContent = `${hours1} Hours`;
+            document.getElementById("minutes1").textContent = `${minutes1} Minutes`;
+            document.getElementById("seconds1").textContent = `${seconds1} Seconds`;
+
+            // Save the elapsed time for time-box1 in localStorage
+            localStorage.setItem('elapsedTime1', elapsedTime1);
+        }
+
+        // Function to update countdown for Zero Accident Warehouse (time-box2)
+        function updateCountdown2() {
+            // Increase the elapsed time by one second
+            elapsedTime2++;
+
+            // Calculate the time values for time-box2
+            let days2 = Math.floor(elapsedTime2 / (24 * 60 * 60));
+            let hours2 = Math.floor((elapsedTime2 % (24 * 60 * 60)) / (60 * 60));
+            let minutes2 = Math.floor((elapsedTime2 % (60 * 60)) / 60);
+            let seconds2 = elapsedTime2 % 60;
+
+            // Update the HTML content for time-box2
+            document.getElementById("days2").textContent = `${days2} Days`;
+            document.getElementById("hours2").textContent = `${hours2} Hours`;
+            document.getElementById("minutes2").textContent = `${minutes2} Minutes`;
+            document.getElementById("seconds2").textContent = `${seconds2} Seconds`;
+
+            // Save the elapsed time for time-box2 in localStorage
+            localStorage.setItem('elapsedTime2', elapsedTime2);
+        }
+
+        // Function to set start time for No Shortage Material countdown
+        function setStartTime1() {
+            const daysInput1 = document.getElementById('daysInput1').value;
+            const hoursInput1 = document.getElementById('hoursInput1').value;
+            const minutesInput1 = document.getElementById('minutesInput1').value;
+            const secondsInput1 = document.getElementById('secondsInput1').value;
+
+            // Convert inputs into total seconds
+            elapsedTime1 = (parseInt(daysInput1) || 0) * 24 * 60 * 60
+                + (parseInt(hoursInput1) || 0) * 60 * 60
+                + (parseInt(minutesInput1) || 0) * 60
+                + (parseInt(secondsInput1) || 0);
+
+            // Save the new start time
+            localStorage.setItem('elapsedTime1', elapsedTime1);
+
+            // Reinitialize the countdown
+            updateCountdown1();
+        }
+
+        // Function to set start time for Zero Accident Warehouse countdown
+        function setStartTime2() {
+            const daysInput2 = document.getElementById('daysInput2').value;
+            const hoursInput2 = document.getElementById('hoursInput2').value;
+            const minutesInput2 = document.getElementById('minutesInput2').value;
+            const secondsInput2 = document.getElementById('secondsInput2').value;
+
+            // Convert inputs into total seconds
+            elapsedTime2 = (parseInt(daysInput2) || 0) * 24 * 60 * 60
+                + (parseInt(hoursInput2) || 0) * 60 * 60
+                + (parseInt(minutesInput2) || 0) * 60
+                + (parseInt(secondsInput2) || 0);
+
+            // Save the new start time
+            localStorage.setItem('elapsedTime2', elapsedTime2);
+
+            // Reinitialize the countdown
+            updateCountdown2();
+        }
+
+        // Call the updateCountdown functions every second for both
+        setInterval(() => {
+            updateCountdown1();
+            updateCountdown2();
+        }, 1000);
+
+        // Initial call to set the countdowns right away
+        updateCountdown1();
+        updateCountdown2();
+    </script>
+</body>
+</html>

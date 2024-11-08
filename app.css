@@ -1,0 +1,4 @@
+.countdown-container {
+    display: flex;
+    gap: 40px; /* Increase the gap for the countdown boxes */
+}
